@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <h1>Dashboard</h1>
+  <%= link_to "My Surveys", "/surveys", :class => "btn btn-primary" %>
 <% else %>
 <div class="jumbotron">
       <div class="container">

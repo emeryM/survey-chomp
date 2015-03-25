@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/emeryM/rapidfire
+  revision: cf798fc51d0bc19c749d52a75a1f2435e010955a
+  specs:
+    rapidfire (2.1.0)
+      active_model_serializers (~> 0.8.1)
+      rails (>= 3.2.13)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,9 +128,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    rapidfire (2.0.0)
-      active_model_serializers (~> 0.8.1)
-      rails (>= 3.2.13)
     rdoc (4.2.0)
       json (~> 1.4)
     responders (2.1.0)
@@ -172,7 +177,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.2.0)
-  rapidfire
+  rapidfire!
   sdoc (~> 0.4.0)
   spring
   turbolinks

@@ -1,0 +1,23 @@
+<h2>
+  Surveys
+  <% if can_administer? %>
+    <%= link_to "New Survey", new_question_group_path, :class => "btn btn-primary pull-right" %>
+  <% end %>
+</h2>
+<hr/>
+
+<table>
+  <colgroup>
+    <col>
+    <col width="250">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "question_group", collection: @question_groups %>
+  </tbody>
+</table>
