@@ -1,7 +1,9 @@
 <h2>
   Surveys
   <% if can_administer? %>
+   <% if user_signed_in? %>
     <%= link_to "New Survey", new_question_group_path, :class => "btn btn-primary pull-right" %>
+    <% end %>
   <% end %>
 </h2>
 <hr/>
