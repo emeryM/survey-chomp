@@ -1,0 +1,52 @@
+<% if user_signed_in? %>
+  <h1>Dashboard</h1>
+<% else %>
+<div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to SurveyChomp!</h1>
+        <p>
+          SurveyChomp is a survey creation, sharing, and analysis application
+          designed with the needs of students in mind. If you need to collect
+          participant data for your next project, create an account today!
+        </p>
+        <p><a class="btn btn-primary btn-lg" href="users/sign_up" role="button">Get Started</a></p>
+      </div>
+</div>
+<div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>1. Create Surveys</h2>
+          <p>
+            Donec id elit non mi porta gravida at eget metus.
+            Fusce dapibus, tellus ac cursus commodo, tortor mauris
+            condimentum nibh, ut fermentum massa justo sit amet
+            risus. Etiam porta sem malesuada magna mollis euismod.
+            Donec sed odio dui.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h2>2. Collect Responses</h2>
+          <p>
+            Donec sed odio dui.
+            Decide how long your survey will be open to new
+            responses. Then share your survey with others
+            by sending an email or connecting to a social media
+            account. Participants can then provide answers
+            to your questions!
+            Donec id elit non mi porta gravida at eget metus.
+          </p>
+       </div>
+        <div class="col-md-4">
+          <h2>3. Analyze Results</h2>
+          <p>
+            Etiam porta sem malesuada magna mollis euismod.
+            Once you've collected your results, download the
+            data as a spreadsheet to perform your own analysis.
+            Or use the built-in tool to create custom charts
+            and graphs based upon the data you've collected.
+            Donec sed odio dui.
+          </p>
+        </div>
+      </div>
+<% end %>
