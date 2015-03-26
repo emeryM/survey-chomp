@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require underscore
 //= require bootstrap-sprockets
-//= require_tree .
+//= require chart
+//= require_tree ./templates
+//= require result-chart
