@@ -32,5 +32,5 @@ class @ResultChart
     new Chart(ctx).Doughnut(chartData)
 
   render: ->
-    jsonUrl = "/rapidfire/question_groups/#{@questionGroupId}/results"
+    jsonUrl = "/surveys/question_groups/#{@questionGroupId}/results"
     $.ajax jsonUrl, dataType: "json", success: @onJSONResults
