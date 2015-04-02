@@ -5,4 +5,6 @@ class ApplicationController < ActionController::Base
   def can_administer?
     true
   end
+
+  @question_groups = Rapidfire::QuestionGroup.all
 end

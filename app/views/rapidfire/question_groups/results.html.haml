@@ -6,6 +6,20 @@
 
 .tab-content
   .tab-pane.active#json-results
+    %br
+    %div.btn.btn-primary.toggle.pull-right#cust Customize
+    %p.custopt.hide Customization Menu
+    %p.custopt.hide Option 1
+    %p.custopt.hide Option 2
+    %br
+    %p.custopt.hide.btn.btn-danger Render
+    %br
     = render partial: "json_results", locals: { question_group: @question_group }
   .tab-pane#html-results
     = render partial: "html_results", locals: { results: @question_group_results }
+
+:javascript
+  $("#cust").on("click", function(){
+    $("#cust").toggleClass('active');
+    $("p.custopt").toggleClass('hide');
+  });
