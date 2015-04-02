@@ -29,7 +29,7 @@ class @ResultChart
     $resultsHtml.appendTo @container
 
     ctx = $resultsHtml.find("canvas").get(0).getContext("2d")
-    new Chart(ctx).Doughnut(chartData)
+    new Chart(ctx).Pie(chartData, {segmentStrokeColor : "#D5D5D5"})
 
   render: ->
     jsonUrl = "/surveys/question_groups/#{@questionGroupId}/results"

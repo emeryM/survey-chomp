@@ -1,7 +1,6 @@
 - results.each do |result|
   %div
     %h4
-      Question:
       = result.question.question_text
     %p
       - if result.results.is_a?(Array)
