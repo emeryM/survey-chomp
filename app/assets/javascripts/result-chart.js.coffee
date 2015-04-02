@@ -14,7 +14,7 @@ class @ResultChart
     $resultsHtml.appendTo @container
 
   appendAggregatableResults: (resultObj)->
-    colors = ["#F33E6F", "#2D91EA", "#F7464A", "#69D2E7", "#4D5360", "#F38630", "black"]
+    colors = ["#E6781E", "#1693A7", "#C8CF02", "#F8FCC1", "#CC0C39", "white", "black"]
 
     # convert results to chart.js data format
     # fetch all values, and assign a color
