@@ -7,13 +7,13 @@ class @ResultChart
       if $.isArray(resultObj.results)
         @appendNonAggregatableResults(resultObj)
       else
-        @appendAggregatableResults(resultObj)
+        @appendAggregatableResults(resultObj, "#F08080")
 
   appendNonAggregatableResults: (resultObj)->
     $resultsHtml = $ JST["templates/non_aggregatable"](resultObj: resultObj)
     $resultsHtml.appendTo @container
 
-  appendAggregatableResults: (resultObj)->
+  appendAggregatableResults: (resultObj, color1)->
     colors = ["#E6781E", "#1693A7", "#C8CF02", "#F8FCC1", "#CC0C39", "white", "black"]
 
     # convert results to chart.js data format

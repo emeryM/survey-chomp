@@ -8,11 +8,18 @@
   .tab-pane.active#json-results
     %br
     %div.btn.btn-primary.toggle.pull-right#cust Customize
-    %p.custopt.hide Customization Menu
-    %p.custopt.hide Option 1
-    %p.custopt.hide Option 2
-    %br
-    %p.custopt.hide.btn.btn-danger Render
+    %h5.custopt.hide Customization Menu
+    %form{:class => "custopt hide", :action => "#", :method => "get"}
+      = radio_button_tag 'color', 'red'
+      = label_tag 'Red'
+      %br
+      = radio_button_tag 'color', 'blue'
+      = label_tag 'Blue'
+      %br
+      = radio_button_tag 'color', 'yellow'
+      = label_tag 'Yellow'
+      %br
+      = submit_tag 'Render', class: "btn btn-danger"
     %br
     = render partial: "json_results", locals: { question_group: @question_group }
   .tab-pane#html-results
@@ -21,5 +28,5 @@
 :javascript
   $("#cust").on("click", function(){
     $("#cust").toggleClass('active');
-    $("p.custopt").toggleClass('hide');
+    $(".custopt").toggleClass('hide');
   });
