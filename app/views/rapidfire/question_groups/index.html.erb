@@ -1,14 +1,20 @@
-<h2>
-  Surveys
-  <% if can_administer? %>
-   <% if user_signed_in? %>
-    <%= link_to "New Survey", new_question_group_path, :class => "btn btn-primary pull-right" %>
+    <% if user_signed_in? %>
+    
+      <h2 class="col-sm-offset-1">My Surveys</h2>
+      <h4 class="col-sm-offset-1">
+        <span class="glyphicon glyphicon-plus"></span>
+      <%= link_to "New Survey", new_question_group_path %>
+    </h4>
+    <% else %>
+      <h2 class="col-sm-offset-1">All Surveys</h2>
+      <p class="col-sm-offset-1">
+        Welcome, Guest.
+        You may answer any of the surveys below or
+        <%= link_to "sign up", "/users/sign_up" %> to create your own.
+      </p>
     <% end %>
-  <% end %>
-</h2>
-<p>User ID:<%= current_user.id =%></p>
-
 <hr/>
+<div class="col-sm-offset-1">
 <table>
   <colgroup>
     <col>
@@ -16,11 +22,15 @@
   </colgroup>
   <thead>
     <tr>
-      <th>Survey</th>
-      <th>Options</th>
+      <th><h4>Survey</h4></th>
+      <th><h4></h4></th>
+      <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Options</h4></th>
     </tr>
   </thead>
   <tbody>
     <%= render partial: "question_group", collection: @question_groups %>
   </tbody>
 </table>
+  <br /><br />
+
+</div>

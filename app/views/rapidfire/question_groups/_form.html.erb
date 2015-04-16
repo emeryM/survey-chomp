@@ -9,7 +9,10 @@
     </ul>
   <% end %>
 
+
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :owner %>
+  <%= f.number_field :owner, :value => current_user.id %>
   <%= f.submit %>
 <% end %>

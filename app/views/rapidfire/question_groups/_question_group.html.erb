@@ -1,21 +1,37 @@
+<% if user_signed_in? %>
 <tr id= "question_group_<%= question_group.id %>">
   <td>
-    <% if can_administer? %>
-      <%= link_to question_group.name, question_group_questions_path(question_group) %>
-    <% else %>
-      <%= question_group.name %>
+    <% if current_user.id == question_group.owner %>
+      <h4>
+        <%= link_to question_group.name, question_group_questions_path(question_group) %>
+      </h4>
     <% end %>
   </td>
+  <td></td>
+  <td>
+    <% if current_user.id == question_group.owner %>
+      <ul class="horizontal-list">
+        <li><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "View Results", [:results, question_group] %></li>
+          <li><%= link_to "Copy Sharing Link", "/surveys" %></li>
+          <li><%= link_to "Delete", [question_group], method: :delete %></li>
+        <% end %>
+    </ul>
+    <% end %>
+  </td>
+</tr>
+
+<% else %>
+<tr id= "question_group_<%= question_group.id %>">
+  <td>
+    <%= question_group.name %>
+  </td>
+  <td></td>
   <td>
     <ul class="horizontal-list">
-      <li><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %></li>
-      <% if user_signed_in? %>
-      <% if can_administer? %>
-        <li><%= link_to "View Results", [:results, question_group] %></li>
-        <li><%= link_to "Copy Sharing Link", "/surveys" %></li>
-        <li><%= link_to "Delete", [question_group], method: :delete %></li>
-      <% end %>
-      <% end %>
+        <%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %>
     </ul>
   </td>
 </tr>
+<% end %>
