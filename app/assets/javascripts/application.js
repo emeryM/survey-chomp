@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require underscore
 //= require bootstrap-sprockets
+//= require zeroclipboard
 //= require chart
 //= require_tree ./templates
 //= require result-chart
