@@ -1,59 +1,132 @@
 <% if user_signed_in? %>
-<tr id= "question_group_<%= question_group.id %>" class=<%= @color %> >
-  <td>
-
-    <% if current_user.id == question_group.owner %>
-      <h4>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= link_to question_group.name, question_group_questions_path(question_group) %>
-      </h4>
-    <% end %>
-  </td>
-  <td></td>
-  <td>
-    <% if current_user.id == question_group.owner %>
-    <% @color = !@color %>
-      <ul class="horizontal-list">
-        <% if question_group.published == true %>
-          <br />
-          <li><%= button_to "Answer Questions", new_question_group_answer_group_path(question_group), :class => 'btn btn-sm', :method => :get %></li>
-          <br />
-          <li><%= button_to "View Results", [:results, question_group], :class => 'btn btn-sm', :method => :get %></li>
-          <br />
-          <li><%= button_to "Share Survey", "/surveys", :class => 'btn btn-sm', :method => :get %></li>
-        <% else %>
+  <tr id= "question_group_<%= question_group.id %>" class=<%= @color %> >
+    <td>
+      <% if current_user.id == question_group.owner %>
+        <h4>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to question_group.name,
+                      question_group_questions_path(question_group) %>
+        </h4>
+      <% end %>
+    </td>
+    <td></td>
+    <td>
+      <% if current_user.id == question_group.owner %>
+        <% @color = !@color %>
+        <ul class="horizontal-list">
+          <% if question_group.published == true %>
+            <br />
+            <li>
+              <%= button_to "Answer Questions",
+                            new_question_group_answer_group_path(question_group),
+                            :class => 'btn btn-sm',
+                            :method => :get %>
+            </li>
+            <br />
+            <li>
+              <%= button_to "View Results",
+                            [:results, question_group],
+                            :class => 'btn btn-sm',
+                            :method => :get %>
+            </li>
+            <br />
+            <li>
+              <button href="#"
+                      id="b<%= question_group.name.gsub(/\s+/, "") %>"
+                      class="btn btn-sm"
+                      data-toggle="modal"
+                      data-target="#m<%= question_group.name.gsub(/\s+/, "") %>">
+                      Share Survey
+              </button>
+              <div  class="modal fade"
+                    id="m<%= question_group.name.gsub(/\s+/, "") %>"
+                    tabindex="-1" role="dialog"
+                    aria-labelledby="basicModal"
+                    aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-hidden="true">
+                              &times;
+                      </button>
+                      <h4 class="modal-title" id="Title">
+                        <%= question_group.name %>
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        http://localhost:3000<%= new_question_group_answer_group_path(question_group) %>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button class='btn'
+                              data-clipboard-text='http://localhost:3000<%= new_question_group_answer_group_path(question_group) %>'
+                              data-dismiss="modal"
+                              id="question_group_<%= question_group.id %>_copy" >
+                              Copy To Clipboard
+                      </button>
+                      <button type="button"
+                              class="btn btn-primary"
+                              data-dismiss="modal">
+                              Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% else %>
+            <br />
+            <li>
+              <%= form_for question_group do |f| %>
+                <%- if question_group.errors.any? %>
+                  <ul>
+                  <%- question_group.errors.full_messages.each do |message| %>
+                    <li>
+                      <%= message %>
+                    </li>
+                  <% end %>
+                  </ul>
+                <% end %>
+                <%= f.hidden_field :published, :value => 1 %>
+                <%= f.submit 'Publish Survey', :class => 'btn btn-sm'%>
+              <% end %>
+            </li>
+          <% end %>
           <br />
           <li>
-            <%= form_for question_group do |f| %>
-              <%- if question_group.errors.any? %>
-                <ul>
-                  <%- question_group.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              <% end %>
-              <%= f.hidden_field :published, :value => 1 %>
-              <%= f.submit 'Publish Survey', :class => 'btn btn-sm'%>
-            <% end %>
+            <%= button_to "Delete",
+            [question_group],
+            :class => 'btn btn-sm',
+            data: {confirm: "This will permanently delete the survey. Are you sure?"},
+            method: :delete %>
           </li>
-        <% end %>
-        <br />
-        <li><%= button_to "Delete", [question_group], :class => 'btn btn-sm', data: {confirm: "This will permanently delete the survey. Are you sure?"}, method: :delete %></li>
-    </ul>
-    <% end %>
-  </td>
-</tr>
-
+        </ul>
+      <% end %>
+    </td>
+  </tr>
 <% else %>
-<tr id= "question_group_<%= question_group.id %>">
-  <td>
-    <%= question_group.name %>
-  </td>
-  <td></td>
-  <td>
-    <ul class="horizontal-list">
-        <%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %>
-    </ul>
-  </td>
-</tr>
+  <tr id= "question_group_<%= question_group.id %>">
+    <td>
+      <%= question_group.name %>
+    </td>
+    <td></td>
+    <td>
+      <ul class="horizontal-list">
+        <%= link_to "Answer Questions",
+                    new_question_group_answer_group_path(question_group) %>
+      </ul>
+    </td>
+  </tr>
 <% end %>
+
+
+
+<script>
+$(document).ready(function() {
+  var clip = new ZeroClipboard($("#question_group_<%= question_group.id %>_copy"))
+});
+</script>
