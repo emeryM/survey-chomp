@@ -1,8 +1,10 @@
 <% if user_signed_in? %>
-<tr id= "question_group_<%= question_group.id %>">
+<tr id= "question_group_<%= question_group.id %>" class=<%= @color %> >
   <td>
+
     <% if current_user.id == question_group.owner %>
       <h4>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= link_to question_group.name, question_group_questions_path(question_group) %>
       </h4>
     <% end %>
@@ -10,14 +12,15 @@
   <td></td>
   <td>
     <% if current_user.id == question_group.owner %>
+    <% @color = !@color %>
       <ul class="horizontal-list">
         <% if question_group.published == true %>
           <br />
-          <li><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group), :class => 'btn btn-sm' %></li>
+          <li><%= button_to "Answer Questions", new_question_group_answer_group_path(question_group), :class => 'btn btn-sm', :method => :get %></li>
           <br />
-          <li><%= link_to "View Results", [:results, question_group], :class => 'btn btn-sm' %></li>
+          <li><%= button_to "View Results", [:results, question_group], :class => 'btn btn-sm', :method => :get %></li>
           <br />
-          <li><%= link_to "Share Survey", "/surveys", :class => 'btn btn-sm' %></li>
+          <li><%= button_to "Share Survey", "/surveys", :class => 'btn btn-sm', :method => :get %></li>
         <% else %>
           <br />
           <li>
@@ -35,7 +38,7 @@
           </li>
         <% end %>
         <br />
-        <li><%= link_to "Delete", [question_group], :class => 'btn btn-sm', data: {confirm: "This will permanently delete the survey. Are you sure?"}, method: :delete %></li>
+        <li><%= button_to "Delete", [question_group], :class => 'btn btn-sm', data: {confirm: "This will permanently delete the survey. Are you sure?"}, method: :delete %></li>
     </ul>
     <% end %>
   </td>

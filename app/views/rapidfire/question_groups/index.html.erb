@@ -3,6 +3,7 @@
       <h2 class="col-sm-offset-1">My Surveys
         <%= link_to "New Survey", new_question_group_path, :class => "btn btn-primary pull-right" %>
       </h2>
+      <% @color = true %>
 
     <% else %>
       <h2 class="col-sm-offset-1">All Surveys</h2>
@@ -13,15 +14,15 @@
       </p>
     <% end %>
 <hr/>
-<div class="col-sm-offset-1">
-<table>
+
+<table class="surveyTable">
   <colgroup>
     <col>
     <col width="250">
   </colgroup>
   <thead>
     <tr>
-      <th><h4>Survey</h4></th>
+      <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Survey</h4></th>
       <th><h4></h4></th>
       <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Options</h4></th>
     </tr>
@@ -31,5 +32,3 @@
   </tbody>
 </table>
   <br /><br />
-
-</div>
