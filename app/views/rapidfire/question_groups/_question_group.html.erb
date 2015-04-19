@@ -57,16 +57,23 @@
                       </h4>
                     </div>
                     <div class="modal-body">
-                      <p>
-                        http://localhost:3000<%= new_question_group_answer_group_path(question_group) %>
-                      </p>
+                      <p>Link to file</p>
+                      <input
+                        autofocus
+                        readonly="true"
+                        type="text"
+                        size="80"
+                        value="http://localhost:3000<%= new_question_group_answer_group_path(question_group) %>">
+                      </input>
+                      <br /><br />
+                      <p>Send this link to</p>
                     </div>
                     <div class="modal-footer">
                       <button class='btn'
                               data-clipboard-text='http://localhost:3000<%= new_question_group_answer_group_path(question_group) %>'
                               data-dismiss="modal"
                               id="question_group_<%= question_group.id %>_copy" >
-                              Copy To Clipboard
+                              Copy Link To Clipboard
                       </button>
                       <button type="button"
                               class="btn btn-primary"

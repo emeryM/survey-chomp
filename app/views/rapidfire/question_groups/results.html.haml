@@ -8,25 +8,49 @@
   .tab-pane.active#json-results
     %br
     %div.btn.btn-primary.toggle.pull-right#cust Customize
-    %h5.custopt.hide Customization Menu
+    %h4.custopt.hide Customization Menu
     %form{:class => "custopt hide", :action => "#", :method => "get"}
-      = radio_button_tag 'color', 'red'
-      = label_tag 'Red'
+      %h5.custopt.hide Palette Picker
+      &nbsp;&nbsp;&nbsp;
+      = text_field_tag 'Color 1', "#E6781E", id: 1
       %br
-      = radio_button_tag 'color', 'blue'
-      = label_tag 'Blue'
+      = text_field_tag 'Color 2', "#1693A7", id: 2
       %br
-      = radio_button_tag 'color', 'yellow'
-      = label_tag 'Yellow'
+      = text_field_tag 'Color 3', "#C8CF02", id: 3
       %br
-      = submit_tag 'Render', class: "btn btn-danger"
+      = text_field_tag 'Color 4', "#F8FCC1", id: 4
+      %br
+      = text_field_tag 'Color 5', "#CC0C39", id: 5
+      %br
+      = text_field_tag 'Color 6', "#FFFFFF", id: 6
+      %br
+      = text_field_tag 'Color 7', "#000000", id: 7
+      %br
+      %br
+      %div.btn.btn-success#render Render
     %br
     = render partial: "json_results", locals: { question_group: @question_group }
   .tab-pane#html-results
     = render partial: "html_results", locals: { results: @question_group_results }
 
 :javascript
+  $(document).ready(function(){
+    $.minicolors.defaults.theme = 'bootstrap';
+    $('input[type=text]').minicolors();
+  });
   $("#cust").on("click", function(){
     $("#cust").toggleClass('active');
     $(".custopt").toggleClass('hide');
+  });
+  $("#render").on("click", function(){
+    var question_group_id = #{@question_group.id}
+    var colors = [document.getElementById("1").value,
+                  document.getElementById("2").value,
+                  document.getElementById("3").value,
+                  document.getElementById("4").value,
+                  document.getElementById("5").value,
+                  document.getElementById("6").value,
+                  document.getElementById("7").value]
+    var charts = new ResultChart(question_group_id, colors);
+    charts.render();
   });

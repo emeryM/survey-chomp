@@ -1,5 +1,13 @@
 #js-json-results
 
 :javascript
-  var charts = new ResultChart("#{question_group.id}");
+  var colors = colors =
+            ["#E6781E",
+            "#1693A7",
+            "#C8CF02",
+            "#F8FCC1",
+            "#CC0C39",
+            "#FFFFFF",
+            "#000000"]
+  var charts = new ResultChart("#{question_group.id}", colors);
   charts.render();

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/emeryM/rapidfire
-  revision: fc6a10a89216dc09f2c53aeba8b653dd0f6f3016
+  revision: 777e2ad801dc99061b0f2fd710784bc126f5d2f1
   specs:
     rapidfire (2.1.0)
       active_model_serializers (~> 0.8.1)
@@ -96,6 +96,9 @@ GEM
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-minicolors-rails (2.1.4.0)
+      jquery-rails
+      rails (>= 3.2.8)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -191,6 +194,7 @@ DEPENDENCIES
   ejs
   haml-rails
   jbuilder (~> 2.0)
+  jquery-minicolors-rails
   jquery-rails
   pg
   rails (= 4.2.0)
