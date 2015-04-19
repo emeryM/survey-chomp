@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/emeryM/rapidfire
-  revision: bed80ce5baa1805c6573830ce226da4f1c2e3a7b
+  revision: fc6a10a89216dc09f2c53aeba8b653dd0f6f3016
   specs:
     rapidfire (2.1.0)
       active_model_serializers (~> 0.8.1)

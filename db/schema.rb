@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416063011) do
+ActiveRecord::Schema.define(version: 20150419003823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150416063011) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner"
+    t.boolean  "published"
   end
 
   create_table "rapidfire_questions", force: :cascade do |t|

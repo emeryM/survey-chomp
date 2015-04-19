@@ -11,12 +11,31 @@
   <td>
     <% if current_user.id == question_group.owner %>
       <ul class="horizontal-list">
-        <li><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %></li>
-        <% if user_signed_in? %>
-          <li><%= link_to "View Results", [:results, question_group] %></li>
-          <li><%= link_to "Delete", [question_group], data: {confirm: "This will permanently delete the survey. Are you sure?"}, method: :delete %></li>
-          <li><%= link_to "Display Sharing Link", "/surveys" %></li>
+        <% if question_group.published == true %>
+          <br />
+          <li><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group), :class => 'btn btn-sm' %></li>
+          <br />
+          <li><%= link_to "View Results", [:results, question_group], :class => 'btn btn-sm' %></li>
+          <br />
+          <li><%= link_to "Share Survey", "/surveys", :class => 'btn btn-sm' %></li>
+        <% else %>
+          <br />
+          <li>
+            <%= form_for question_group do |f| %>
+              <%- if question_group.errors.any? %>
+                <ul>
+                  <%- question_group.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+              <%= f.hidden_field :published, :value => 1 %>
+              <%= f.submit 'Publish Survey', :class => 'btn btn-sm'%>
+            <% end %>
+          </li>
         <% end %>
+        <br />
+        <li><%= link_to "Delete", [question_group], :class => 'btn btn-sm', data: {confirm: "This will permanently delete the survey. Are you sure?"}, method: :delete %></li>
     </ul>
     <% end %>
   </td>

@@ -1,10 +1,9 @@
     <% if user_signed_in? %>
 
-      <h2 class="col-sm-offset-1">My Surveys</h2>
-      <h4 class="col-sm-offset-1">
-        <span class="glyphicon glyphicon-plus"></span>
-      <%= link_to "New Survey", new_question_group_path %>
-    </h4>
+      <h2 class="col-sm-offset-1">My Surveys
+        <%= link_to "New Survey", new_question_group_path, :class => "btn btn-primary pull-right" %>
+      </h2>
+
     <% else %>
       <h2 class="col-sm-offset-1">All Surveys</h2>
       <p class="col-sm-offset-1">

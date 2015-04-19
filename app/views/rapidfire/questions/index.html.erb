@@ -1,3 +1,4 @@
+<% if @question_group.published == false %>
 <h2>
   Questions
   <%= link_to "New Question", new_question_group_question_path(@question_group), :class => "btn btn-primary pull-right" %>
@@ -19,3 +20,8 @@
     <%= render partial: "question", collection: @questions %>
   </tbody>
 </table>
+<% else %>
+<h2>
+  This survey has been published, so it can no longer be edited.
+</h2>
+<% end %>

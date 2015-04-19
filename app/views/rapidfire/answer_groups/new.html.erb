@@ -1,14 +1,18 @@
-<h2>Please answer these Questions</h2>
-<hr/>
+<% if @question_group.published == true %>
+  <h2>Please answer these questions.</h2>
+  <hr/>
 
-<%= form_for([@question_group, @answer_group_builder]) do |f| %>
-  <%- @answer_group_builder.answers.each do |answer| %>
-    <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-      <%= render_answer_form_helper(answer, answer_form) %>
+  <%= form_for([@question_group, @answer_group_builder]) do |f| %>
+    <%- @answer_group_builder.answers.each do |answer| %>
+      <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+        <%= render_answer_form_helper(answer, answer_form) %>
+      <% end %>
     <% end %>
+    <br/>
+    <br/>
+    <%= f.submit "Submit" %>
+    <br/>
   <% end %>
-  <br/>
-  <br/>
-  <%= f.submit "Submit" %>
-  <br/>
+<% else %>
+<h2>This survey is not accepting new responses at this time.</h2>
 <% end %>
