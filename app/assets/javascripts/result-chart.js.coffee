@@ -1,5 +1,5 @@
 class @ResultChart
-  constructor: (@questionGroupId, @col)->
+  constructor: (@questionGroupId, @colors, @fontFamily, @fontColor)->
     @container = $("#js-json-results")
 
   onJSONResults: (data, status, xhr)=>
@@ -10,18 +10,14 @@ class @ResultChart
         @appendAggregatableResults(resultObj)
 
   appendNonAggregatableResults: (resultObj)->
-    $resultsHtml = $ JST["templates/non_aggregatable"](resultObj: resultObj)
+    $resultsHtml = $ JST["templates/non_aggregatable"]
+      resultObj: resultObj
+      fFamily: @fontFamily
+      fColor: @fontColor
     $resultsHtml.appendTo @container
 
   appendAggregatableResults: (resultObj)->
-    colors = ["#E6781E",
-              "#1693A7",
-              "#C8CF02",
-              "#F8FCC1",
-              "#CC0C39",
-              "#FFFFFF",
-              "#000000"]
-    colors = @col
+    colors = @colors
 
     # convert results to chart.js data format
     # fetch all values, and assign a color
@@ -33,6 +29,8 @@ class @ResultChart
     $resultsHtml = $ JST["templates/aggregatable"]
       resultObj:  resultObj
       legendData: legendData
+      fFamily: @fontFamily
+      fColor: @fontColor
     $resultsHtml.appendTo @container
 
     ctx = $resultsHtml.find("canvas").get(0).getContext("2d")

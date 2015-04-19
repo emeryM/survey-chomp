@@ -7,27 +7,64 @@
 .tab-content
   .tab-pane.active#json-results
     %br
-    %div.btn.btn-primary.toggle.pull-right#cust Customize
-    %h4.custopt.hide Customization Menu
-    %form{:class => "custopt hide", :action => "#", :method => "get"}
-      %h5.custopt.hide Palette Picker
-      &nbsp;&nbsp;&nbsp;
-      = text_field_tag 'Color 1', "#E6781E", id: 1
-      %br
-      = text_field_tag 'Color 2', "#1693A7", id: 2
-      %br
-      = text_field_tag 'Color 3', "#C8CF02", id: 3
-      %br
-      = text_field_tag 'Color 4', "#F8FCC1", id: 4
-      %br
-      = text_field_tag 'Color 5', "#CC0C39", id: 5
-      %br
-      = text_field_tag 'Color 6', "#FFFFFF", id: 6
-      %br
-      = text_field_tag 'Color 7', "#000000", id: 7
-      %br
-      %br
-      %div.btn.btn-success#render Render
+    %button.btn.btn-primary.pull-right{"data-target" => "#modal-fade", "data-toggle" => "modal", :href => "#"}
+      Customize
+    #modal-fade.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "basicModal", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+              \&times;
+            %h4#Title.modal-title
+              Customize
+          .modal-body
+            %div.row
+              %div.col-md-6.border-col
+                %h5 Palette Picker
+                = text_field_tag 'Color 1', "#E6781E", id: 1, class: 'palette'
+                %br
+                = text_field_tag 'Color 2', "#1693A7", id: 2, class: 'palette'
+                %br
+                = text_field_tag 'Color 3', "#C8CF02", id: 3, class: 'palette'
+                %br
+                = text_field_tag 'Color 4', "#F8FCC1", id: 4, class: 'palette'
+                %br
+                = text_field_tag 'Color 5', "#CC0C39", id: 5, class: 'palette'
+                %br
+                = text_field_tag 'Color 6', "#FFFFFF", id: 6, class: 'palette'
+                %br
+                = text_field_tag 'Color 7', "#000000", id: 7, class: 'palette'
+              %div.col-md-6
+                %h5 Chart Type
+                = radio_button_tag 'type', '1', true
+                = label_tag '1', 'Pie'
+                %br
+                = radio_button_tag 'type', '2'
+                = label_tag '2', 'Bar'
+                %br
+                = radio_button_tag 'type', '3'
+                = label_tag '3', 'Donut'
+                %br
+                %br
+                %h5 Font
+                = radio_button_tag 'font', 'sans-serif', true
+                = label_tag '1', 'Sans-serif'
+                %br
+                = radio_button_tag 'font', 'serif'
+                = label_tag '2', 'Serif'
+                %br
+                = radio_button_tag 'font', 'monospace'
+                = label_tag '3', 'Monospace'
+                %br
+                %br
+                %h5 Font Color
+                = text_field_tag 'Font Color', "#000000", id: 'fc', class: 'palette'
+
+
+          .modal-footer
+            %div.btn.btn-success#render{"data-dismiss" => "modal", :type => "button"} Render
+            %div.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
+              Close
     %br
     = render partial: "json_results", locals: { question_group: @question_group }
   .tab-pane#html-results
@@ -43,6 +80,7 @@
     $(".custopt").toggleClass('hide');
   });
   $("#render").on("click", function(){
+    $(".row-fluid").html("");
     var question_group_id = #{@question_group.id}
     var colors = [document.getElementById("1").value,
                   document.getElementById("2").value,
@@ -51,6 +89,8 @@
                   document.getElementById("5").value,
                   document.getElementById("6").value,
                   document.getElementById("7").value]
-    var charts = new ResultChart(question_group_id, colors);
+    var font_family = $('input[name=font]:checked').val();
+    var font_color = document.getElementById("fc").value
+    var charts = new ResultChart(question_group_id, colors, font_family, font_color);
     charts.render();
   });
