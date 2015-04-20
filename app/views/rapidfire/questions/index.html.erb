@@ -1,27 +1,33 @@
-<% if @question_group.published == false %>
-<h2>
-  Questions
-  <%= link_to "New Question", new_question_group_question_path(@question_group), :class => "btn btn-primary pull-right" %>
-</h2>
-<hr/>
+<% if current_user.id == @question_group.owner %>
+  <% if @question_group.published == false %>
+  <h2>
+    Questions
+    <%= link_to "New Question", new_question_group_question_path(@question_group), :class => "btn btn-primary pull-right" %>
+  </h2>
+  <hr/>
 
-<table>
-  <colgroup>
-    <col>
-    <col width="250">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: "question", collection: @questions %>
-  </tbody>
-</table>
+  <table>
+    <colgroup>
+      <col>
+      <col width="250">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "question", collection: @questions %>
+    </tbody>
+  </table>
+  <% else %>
+  <h2>
+    This survey has been published, so it can no longer be edited.
+  </h2>
+  <% end %>
 <% else %>
 <h2>
-  This survey has been published, so it can no longer be edited.
+  You do not have permission to view this page.
 </h2>
 <% end %>

@@ -9,10 +9,11 @@
     </ul>
   <% end %>
 
-
+  <br />
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.hidden_field :owner, :value => current_user.id %>
   <%= f.hidden_field :published, :value => false %>
-  <%= f.submit %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.submit 'Create Survey', :class => 'btn btn-primary'%>
 <% end %>

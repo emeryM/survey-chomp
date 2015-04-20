@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= favicon_link_tag 'favicon.png' %>
   <title>Surveychomp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -11,20 +12,19 @@
   <div class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
+        <%= link_to(image_tag("favicon.png", :alt => "logo", :title => "Home"), "/", :class => 'pull-left') %>
         <a class="navbar-brand" href="/#">SurveyChomp</a>
       </div>
-      <ul class="nav navbar-nav">
-        <div id="stuffcouldgohere"></div>
-      </ul>
-      <p class="navbar-text pull-right">
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <strong><%= current_user.email %></strong> |
-          <%= link_to 'Edit profile', "/users/edit", :class => 'navbar-link' %> |
-          <%= link_to "Log out", "/users/sign_out", method: :delete, :class => 'navbar-link'  %>
+          <li><div class="navbar-text">&nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.email %></div></li>
+          <li><%= link_to 'Edit profile', "/users/edit", :class => 'navbar-link' %></li>
+          <li><%= link_to "Log out", "/users/sign_out", method: :delete, :class => 'navbar-link'  %></li>
         <% else %>
-          <%= link_to "Sign up", "/users/sign_up", :class => 'navbar-link'  %> |
-          <%= link_to "Log in", "/users/sign_in", :class => 'navbar-link'  %>
-        <% end %>
+          <li><%= link_to "Sign up", "/users/sign_up", :class => 'navbar-link'  %></li>
+          <li><%= link_to "Log in", "/users/sign_in", :class => 'navbar-link'  %></li>
+      <% end %>
+    </ul>
     </div>
   </div>
 

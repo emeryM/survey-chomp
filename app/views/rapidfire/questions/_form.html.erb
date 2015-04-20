@@ -26,7 +26,7 @@
   <%= f.text_area :answer_options, rows: 5 %>
   <br />
   <br />
-  <%= f.submit submit_text %>
+  <%= f.submit submit_text, :class => 'btn btn-primary' %>
 
   <br />
   <br />
@@ -35,23 +35,29 @@
   <h4>Options</h4>
   <hr/>
 
-  <%= f.label :answer_presence %>
+
+  <%= f.label :answer_presence, 'Require a response' %>
+  &nbsp;&nbsp;
   <%= f.check_box :answer_presence %>
   <br />
   <br />
-  <%= f.label :answer_minimum_length %>
+  <%= f.label :answer_minimum_length, 'Minimum answer length' %>
+  <br />
   <%= f.text_field :answer_minimum_length %>
   <br />
   <br />
-  <%= f.label :answer_maximum_length %>
+  <%= f.label :answer_maximum_length, 'Maximum answer length' %>
+  <br />
   <%= f.text_field :answer_maximum_length %>
   <br />
   <br />
-  <%= f.label :answer_greater_than_or_equal_to %>
+  <%= f.label :answer_greater_than_or_equal_to, 'Minimum answer value' %>
+  <br />
   <%= f.text_field :answer_greater_than_or_equal_to %>
   <br />
   <br />
-  <%= f.label :answer_less_than_or_equal_to %>
+  <%= f.label :answer_less_than_or_equal_to, 'Maximum answer value' %>
+  <br />
   <%= f.text_field :answer_less_than_or_equal_to %>
   </div>
 </div>

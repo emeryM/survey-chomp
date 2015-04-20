@@ -99,7 +99,7 @@
                   </ul>
                 <% end %>
                 <%= f.hidden_field :published, :value => 1 %>
-                <%= f.submit 'Publish Survey', :class => 'btn btn-sm'%>
+                <%= f.submit 'Publish Survey', :class => 'btn btn-sm', data: { confirm: "Once a survey is published, it can no longer be edited. Publish this survey?" }%>
               <% end %>
             </li>
           <% end %>
@@ -108,7 +108,7 @@
             <%= button_to "Delete",
             [question_group],
             :class => 'btn btn-sm',
-            data: {confirm: "This will permanently delete the survey. Are you sure?"},
+            data: {confirm: "This will permanently delete the survey. Delete this survey?"},
             method: :delete %>
           </li>
         </ul>
