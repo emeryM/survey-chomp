@@ -16,8 +16,11 @@
     <div class="container">
       <div class="navbar-header">
         <%= link_to(image_tag("favicon.png", :alt => "logo", :title => "Home"), "/", :class => 'pull-left') %>
-        <a class="navbar-brand" href="/#">SurveyChomp</a>
+
       </div>
+      <div class="navbar-header">
+      <a class="navbar-brand" href="/#">SurveyChomp</a>
+    </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><div class="navbar-text">&nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.email %></div></li>
