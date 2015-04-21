@@ -1,1 +1,7 @@
-<%= render partial: 'form', locals: { form: @question_form, url: question_group_questions_path(@question_group), method: :post, submit_text: 'Create Question'} %>
+<% if current_user.id == @question_group.owner %>
+  <%= render partial: 'form', locals: { form: @question_form, url: question_group_questions_path(@question_group), method: :post, submit_text: 'Create Question'} %>
+<% else %>
+<h2>
+  You do not have permission to view this page.
+</h2>
+<% end %>

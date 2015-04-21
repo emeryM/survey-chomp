@@ -6,6 +6,7 @@
       <div class="result aggregatable" style="color: <%- fColor %>; font-family: <%- fFamily %>">
         <h4><%- resultObj.question_text %></h4><br />
         <div class="results-chart">
+          <% if(bar == false){ %>
           <canvas width="200" height="200" class="pull-left"></canvas>
           <div class="span1"></div>
           <div class="pull-left">
@@ -15,11 +16,14 @@
               <% $.each(legendData, function(index, legend){ %>
                 <li>
                   <div class="pull-left legend" style="background: <%- legend.color %>"></div>
-                  <%- legend.key %>
+                  <%- legend.key %> - <%- legend.value %>
                 </li>
               <% }); %>
             </ul>
           </div>
+          <% } else{ %>
+          <canvas width="400" height="300" class="pull-left"></canvas>
+          <% } %>
         </div>
       </div>
     </div>

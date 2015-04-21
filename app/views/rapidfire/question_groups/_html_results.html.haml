@@ -1,21 +1,30 @@
-- results.each do |result|
+<script type="text/javascript" src="http://www.kunalbabre.com/projects/table2CSV.js" > </script>
+
+- results.each do |result, index|
   %div
-    %h4
-      = result.question.question_text
     %p
       - if result.results.is_a?(Array)
-        %ol
-          - result.results.each do |answer|
-            %li= answer
-      - elsif result.results.is_a?(Hash)
-        %table.table.table-striped.table-bordered
-          %thead
-            %tr
-              %th Option
-              %th Count
+        %table.table.table-small.table-boardered
           %tbody
+            %td.table-title= result.question.question_text
+        %table.table.table-striped.table-bordered.table-small
+          %tr
+            %th.bold Answer
+            - result.results.each_with_index do |answer|
+              %tr
+                %td= answer
+      - elsif result.results.is_a?(Hash)
+        %table.table.table-small
+          %tbody
+            %td.table-title= result.question.question_text
+        %table.table.table-striped.table-bordered
+          %tbody
+            %tr
+              %th.bold Option
+              %th.bold Count
+            %tr.hide
+              %td= result.question.question_text
             - result.results.each do |option, count|
               %tr
                 %td= option
                 %td= count
-  %hr

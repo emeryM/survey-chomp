@@ -9,6 +9,7 @@
     %br
     %button.btn.btn-primary.pull-right{"data-target" => "#modal-fade", "data-toggle" => "modal", :href => "#"}
       Customize
+    %br
     #modal-fade.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "basicModal", :role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
@@ -63,11 +64,14 @@
 
           .modal-footer
             %div.btn.btn-success#render{"data-dismiss" => "modal", :type => "button"} Render
-            %div.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
+            %div.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}
               Close
     %br
     = render partial: "json_results", locals: { question_group: @question_group }
   .tab-pane#html-results
+    %br
+    %div= link_to "Generate .csv", "#", :class => "btn btn-primary pull-right", :onclick => "$('table').table2CSV({separator : ', ', header:['#{@question_group.name}']});"
+    %br
     = render partial: "html_results", locals: { results: @question_group_results }
 
 :javascript
@@ -91,6 +95,7 @@
                   document.getElementById("7").value]
     var font_family = $('input[name=font]:checked').val();
     var font_color = document.getElementById("fc").value
-    var charts = new ResultChart(question_group_id, colors, font_family, font_color);
+    var chart_type = $('input[name=type]:checked').val();
+    var charts = new ResultChart(question_group_id, colors, font_family, font_color, chart_type);
     charts.render();
   });
