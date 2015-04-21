@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'send_share_mail/:survey_owner/:survey_link/:participants', :to => 'application#send_share_mail', :as => 'send_share_mail'
+  post 'send_share_mail', :to => 'application#send_share_mail', :as => 'send_share_mail'
 
   mount Rapidfire::Engine => "/surveys"
   # root to: "rapidfire/question_groups#index"

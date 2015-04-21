@@ -89,12 +89,8 @@
                         </input>
                         <br /><br />
                       </form>
-                      <%= button_to "Send",
-                                    'send_share_mail/test1/fml/fff',
-                                    :class => 'btn share-modal-button pull-right',
-                                    :method => :get %>
+                      <button class="btn share-modal-button pull-right" data-dismiss="modal" id="send">Send</button>
                       <br /><br />
-                      <div class="btn btn-primary" id="send">LOL</div>
                     </div>
                     <div class="modal-footer">
 
@@ -165,6 +161,13 @@ $('#send').click(function() {
   owner.replace(/\s+/g, '-');
   var participants = document.getElementById("participants").value;
   participants.replace(/\s+/g, '');
-  window.location.href = "send_share_mail/" + owner + "/<%= question_group.id %>/" + participants;
+  var form = $('<form class="hide" action="send_share_mail" method="post">' +
+    '<input type="text" name="survey_owner" value="' + owner + '" />' +
+    '<input type="text" name="participants" value="' + participants + '" />' +
+    '<input type="text" name="survey_link" value="' + <%= question_group.id %> + '" />' +
+    '</form>');
+  $('body').append(form);
+
+  form.submit();
 });
 </script>
