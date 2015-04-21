@@ -52,53 +52,55 @@
                               aria-hidden="true">
                               &times;
                       </button>
-                      <h4 class="modal-title" id="Title">
+                      <h4 class="modal-title modal-padded" id="Title">
                         <%= question_group.name %>
                       </h4>
                     </div>
                     <div class="modal-body">
-                      <p>Link to file</p>
-                      <input
-                        autofocus
-                        readonly="true"
-                        type="text"
-                        size="80"
-                        value="http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>">
-                      </input>
-                      <br /><br />
-                      <button class='btn share-modal-button pull-right'
-                              data-clipboard-text='http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>'
-                              data-dismiss="modal"
-                              id="question_group_<%= question_group.id %>_copy" >
-                              Copy Link To Clipboard
-                      </button>
-                      <br /><br />
-                      <form>
-                        <p>Send this link to</p>
+                      <div class="modal-padded"
+                        <p>Link to file</p>
                         <input
+                          autofocus
+                          readonly="true"
                           type="text"
                           size="80"
-                          id="participants"
-                          placeholder="Enter a list of comma separated email addresses">
-                        </input>
-                        <input
-                          type="text"
-                          size="80"
-                          id="owner"
-                          placeholder="Enter your name or organization name">
+                          value="http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>">
                         </input>
                         <br /><br />
-                      </form>
-                      <button class="btn share-modal-button pull-right" data-dismiss="modal" id="send">Send</button>
-                      <br /><br />
-                    </div>
-                    <div class="modal-footer">
-
-                      <button type="button"
-                              class="btn btn-primary"
-                              data-dismiss="modal">
-                              Close
-                      </button>
+                        <button class='btn share-modal-button pull-right'
+                                data-clipboard-text='http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>'
+                                data-dismiss="modal"
+                                id="question_group_<%= question_group.id %>_copy" >
+                                Copy To Clipboard
+                        </button>
+                        <br /><br />
+                        <form action="send_share_mail" method="post">
+                          <p>Email this link</p>
+                          <label for="survey_owner">From</label>
+                          <br />
+                          <input
+                            type="text"
+                            size="80"
+                            name="survey_owner"
+                            placeholder="Enter your name or organization name"
+                            required />
+                          <br />
+                          <br />
+                          <label for="participants">To   </label>
+                          <br />
+                          <input
+                            type="text"
+                            size="80"
+                            name="participants"
+                            placeholder="Enter a list of comma separated email addresses"
+                            required />
+                          <input type="hidden" name="survey_link" value="<%= question_group.id %>" />
+                          <br />
+                          <br />
+                          <input type="submit" value="Send" class="btn share-modal-button pull-right">
+                          <br /><br />
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -150,24 +152,8 @@
 <% end %>
 
 
-
 <script>
 $(document).ready(function() {
   var clip = new ZeroClipboard($("#question_group_<%= question_group.id %>_copy"))
-});
-
-$('#send').click(function() {
-  var owner = document.getElementById("owner").value;
-  owner.replace(/\s+/g, '-');
-  var participants = document.getElementById("participants").value;
-  participants.replace(/\s+/g, '');
-  var form = $('<form class="hide" action="send_share_mail" method="post">' +
-    '<input type="text" name="survey_owner" value="' + owner + '" />' +
-    '<input type="text" name="participants" value="' + participants + '" />' +
-    '<input type="text" name="survey_link" value="' + <%= question_group.id %> + '" />' +
-    '</form>');
-  $('body').append(form);
-
-  form.submit();
 });
 </script>

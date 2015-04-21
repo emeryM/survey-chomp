@@ -5,7 +5,7 @@ class SharingMailer < ApplicationMailer
     @participants = participants
     @survey_owner = survey_owner
     @survey_link = survey_link
-    mail(to: "survey.chomp.mailer@gmail.com", bcc: @participants, subject: 'Please participate in this SurveyChomp survey')
+    mail(to: "Undisclosed<survey.chomp.mailer@gmail.com>", bcc: @participants, subject: 'Please participate in this SurveyChomp survey')
   end
 
 end
