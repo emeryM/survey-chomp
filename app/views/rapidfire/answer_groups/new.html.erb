@@ -1,5 +1,6 @@
 <% if @question_group.published == true %>
-  <h2>Please answer these questions.</h2>
+  <h2><%= @question_group.name %></h2>
+  <h4>Please answer these questions.</h4>
   <hr/>
 
   <%= form_for([@question_group, @answer_group_builder]) do |f| %>

@@ -1,0 +1,5 @@
+<%- headers = ['Question Text'] -%>
+<%= CSV.generate_line headers %>
+<%- @question_group_results.each do |result| -%>
+  <%= CSV.generate_line([result.question.question_text) %>
+<%- end -%>
