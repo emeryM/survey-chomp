@@ -4,7 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome, <%= @participant %></h1>
-    <p>This is a test email!</p>
+    <h3>Hello!</h3>
+    <p>
+    <%= @survey_owner %> has created a SurveyChomp survey and
+    would like you to participate. Click
+    <a href="<%= @survey_link %> ">here</a> to respond to the
+    survey.
+    </p>
+    <p>
+    Thank you! Don't forget to use SurveyChomp for your next project.
+    </p>
   </body>
 </html>

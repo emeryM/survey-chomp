@@ -66,15 +66,38 @@
                         value="http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>">
                       </input>
                       <br /><br />
-                      <p>Send this link to</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button class='btn'
+                      <button class='btn share-modal-button pull-right'
                               data-clipboard-text='http://hidden-ridge-9675.herokuapp.com<%= new_question_group_answer_group_path(question_group) %>'
                               data-dismiss="modal"
                               id="question_group_<%= question_group.id %>_copy" >
                               Copy Link To Clipboard
                       </button>
+                      <br /><br />
+                      <form>
+                        <p>Send this link to</p>
+                        <input
+                          type="text"
+                          size="80"
+                          id="participants"
+                          placeholder="Enter a list of comma separated email addresses">
+                        </input>
+                        <input
+                          type="text"
+                          size="80"
+                          id="owner"
+                          placeholder="Enter your name or organization name">
+                        </input>
+                        <br /><br />
+                      </form>
+                      <%= button_to "Send",
+                                    'send_share_mail/test1/fml/fff',
+                                    :class => 'btn share-modal-button pull-right',
+                                    :method => :get %>
+                      <br /><br />
+                      <div class="btn btn-primary" id="send">LOL</div>
+                    </div>
+                    <div class="modal-footer">
+
                       <button type="button"
                               class="btn btn-primary"
                               data-dismiss="modal">
@@ -135,5 +158,13 @@
 <script>
 $(document).ready(function() {
   var clip = new ZeroClipboard($("#question_group_<%= question_group.id %>_copy"))
+});
+
+$('#send').click(function() {
+  var owner = document.getElementById("owner").value;
+  owner.replace(/\s+/g, '-');
+  var participants = document.getElementById("participants").value;
+  participants.replace(/\s+/g, '');
+  window.location.href = "send_share_mail/" + owner + "/<%= question_group.id %>/" + participants;
 });
 </script>

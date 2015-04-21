@@ -5,30 +5,33 @@
       </h2>
       <% @color = true %>
 
+      <hr/>
+
+      <table class="survey-table">
+        <colgroup>
+          <col>
+          <col width="250">
+        </colgroup>
+        <thead>
+          <tr>
+            <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Survey</h4></th>
+            <th><h4></h4></th>
+            <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Options</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "question_group", collection: @question_groups %>
+        </tbody>
+      </table>
+      <br /><br />
+
     <% else %>
-      <h2 class="col-sm-offset-1">All Surveys</h2>
+      <h2 class="col-sm-offset-1">Welcome, Guest</h2>
       <p class="col-sm-offset-1">
-        Welcome, Guest.
-        You may answer any of the surveys below or
-        <%= link_to "sign up", "/users/sign_up" %> to create your own.
+        You are not authorized to view this page.
+      </p>
+      <p class="col-sm-offset-1">
+        Please follow the link were sent to respond to a survey, or
+        <%= link_to "sign up", "/users/sign_up" %> to start creating your own.
       </p>
     <% end %>
-<hr/>
-
-<table class="survey-table">
-  <colgroup>
-    <col>
-    <col width="250">
-  </colgroup>
-  <thead>
-    <tr>
-      <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Survey</h4></th>
-      <th><h4></h4></th>
-      <th><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Options</h4></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: "question_group", collection: @question_groups %>
-  </tbody>
-</table>
-<br /><br />
