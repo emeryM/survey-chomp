@@ -26,20 +26,20 @@ class @ResultChart
     legendData = $.map _.keys(resultObj.results), (key, index, value)->
       key: key, color: colors[index], value: chartData[index].value
 
-    if @type == '1'
-      $resultsHtml = $ JST["templates/aggregatable"]
-        resultObj:  resultObj
-        legendData: legendData
-        fFamily: @fontFamily
-        fColor: @fontColor
-        bar: false
-    else
+    if @type == '2'
       $resultsHtml = $ JST["templates/aggregatable"]
         resultObj:  resultObj
         legendData: legendData
         fFamily: @fontFamily
         fColor: @fontColor
         bar: true
+    else
+      $resultsHtml = $ JST["templates/aggregatable"]
+        resultObj:  resultObj
+        legendData: legendData
+        fFamily: @fontFamily
+        fColor: @fontColor
+        bar: false
     $resultsHtml.appendTo @container
 
 
